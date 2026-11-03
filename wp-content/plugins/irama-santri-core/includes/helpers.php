@@ -202,7 +202,7 @@ function irama_santri_get_gallery_ids(): array {
 	$valid = array();
 
 	foreach ( $ids as $id ) {
-		if ( 'attachment' === get_post_type( $id ) ) {
+		if ( 'attachment' === get_post_type( $id ) && wp_attachment_is_image( $id ) ) {
 			$valid[] = $id;
 		}
 	}

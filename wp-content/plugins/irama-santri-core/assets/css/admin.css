@@ -1,0 +1,129 @@
+/**
+ * Admin styles untuk Irama Santri Core.
+ */
+
+.is-product-fields {
+	display: grid;
+	gap: 24px;
+}
+
+.is-field-grid {
+	display: grid;
+	gap: 24px;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.is-field {
+	margin: 0;
+}
+
+.is-field > label,
+.is-field > legend {
+	display: block;
+	margin-bottom: 6px;
+}
+
+.is-field .description {
+	display: block;
+	margin-top: 6px;
+}
+
+.is-checkbox {
+	display: block;
+	margin-bottom: 6px;
+}
+
+.is-repeater {
+	border-top: 1px solid #dcdcde;
+	padding-top: 16px;
+}
+
+.is-repeater__header h3 {
+	margin: 0 0 4px;
+}
+
+.is-repeater__header .description {
+	margin-top: 0;
+}
+
+.is-repeater__head,
+.is-repeater__row {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: minmax(0, 1fr) 160px auto;
+	align-items: center;
+}
+
+.is-repeater__head {
+	margin: 14px 0 6px;
+	color: #646970;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.is-repeater__row {
+	margin-bottom: 8px;
+}
+
+.is-repeater__row input {
+	width: 100%;
+}
+
+.is-repeater__actions {
+	margin: 8px 0 0;
+}
+
+.is-gallery {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	margin: 12px 0;
+	padding: 0;
+	list-style: none;
+}
+
+.is-gallery > li {
+	padding: 8px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.is-gallery__thumb {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	margin-bottom: 8px;
+	object-fit: cover;
+}
+
+.is-gallery__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.is-gallery__actions .button {
+	min-height: 28px;
+	padding: 0 8px;
+	font-size: 12px;
+	line-height: 26px;
+}
+
+@media (max-width: 782px) {
+	.is-field-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.is-repeater__head {
+		display: none;
+	}
+
+	.is-repeater__row {
+		grid-template-columns: 1fr;
+		padding: 12px;
+		border: 1px solid #dcdcde;
+		border-radius: 4px;
+	}
+}

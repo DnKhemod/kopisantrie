@@ -371,7 +371,7 @@ Aturan:
 - Berisi attachment ID dari Media Library.
 - Urutan array adalah urutan tampilan.
 - Disanitasi dengan `absint()` dan `array_unique()`.
-- Attachment yang sudah tidak ada dilewati saat render.
+- Attachment yang sudah tidak ada atau bukan gambar dilewati saat render.
 - Maksimal 60 gambar.
 
 ### 9.4 `irama_santri_schema_version`

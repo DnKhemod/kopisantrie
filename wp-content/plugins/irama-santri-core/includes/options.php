@@ -99,6 +99,10 @@ function irama_santri_sanitize_page_map( $value ): array {
  * @return int[]
  */
 function irama_santri_sanitize_gallery_ids( $value ): array {
+	if ( is_string( $value ) ) {
+		$value = '' === trim( $value ) ? array() : explode( ',', $value );
+	}
+
 	if ( ! is_array( $value ) ) {
 		return array();
 	}
@@ -109,7 +113,7 @@ function irama_santri_sanitize_gallery_ids( $value ): array {
 	$valid = array();
 
 	foreach ( $ids as $id ) {
-		if ( 'attachment' === get_post_type( $id ) ) {
+		if ( 'attachment' === get_post_type( $id ) && wp_attachment_is_image( $id ) ) {
 			$valid[] = $id;
 		}
 	}

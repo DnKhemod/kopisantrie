@@ -33,6 +33,7 @@ add_action( 'init', 'irama_santri_register_meta' );
 add_action( 'admin_init', 'irama_santri_register_settings' );
 
 if ( is_admin() ) {
+	require_once IRAMA_SANTRI_PLUGIN_DIR . 'includes/admin/assets.php';
 	require_once IRAMA_SANTRI_PLUGIN_DIR . 'includes/admin/product-fields.php';
 	require_once IRAMA_SANTRI_PLUGIN_DIR . 'includes/admin/settings-page.php';
 

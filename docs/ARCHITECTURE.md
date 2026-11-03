@@ -1,7 +1,7 @@
 # TECHNICAL ARCHITECTURE — WEBSITE KEDAI KOPI IRAMA SANTRI
 
-**Versi:** 1.1  
-**Status:** Draft — siap review  
+**Versi:** 1.2  
+**Status:** Disetujui untuk implementasi  
 **Berdasarkan:** `BRIEF.md` 1.0 dan `PRD.md` 1.0  
 **Terakhir diperbarui:** 3 November 2026  
 **Bahasa:** Indonesia
@@ -28,6 +28,15 @@ Dokumen 1.0 diperiksa silang terhadap `BRIEF.md` dan `PRD.md`. Temuan berikut su
 | 12 | Strategi editor tidak diputuskan | Risiko page builder dan data tidak konsisten | Classic Theme dengan field terstruktur; tanpa page builder (§11) |
 
 Ruang lingkup produk tidak berubah. Dokumen ini tidak menambah fitur di luar `BRIEF.md` dan `PRD.md`.
+
+### Perubahan Versi 1.2
+
+Versi 1.2 mencatat hasil implementasi, bukan perubahan ruang lingkup:
+
+- Design system disetujui dan diimplementasikan melalui `docs/DESIGN-SYSTEM.md` serta `theme/src/css/app.css`.
+- Seluruh template halaman, template parts, dan halaman 404 sudah dibuat.
+- UI admin untuk varian, add-on, info kedai, dan galeri sudah dibuat.
+- Token warna, tipografi, shadow, dan radius dibekukan untuk implementasi; aset merek final (logo, font berlisensi, foto) tetap menyusul.
 
 ---
 
@@ -273,6 +282,7 @@ irama_santri_get_facilities( array $args = array() ): WP_Query
 irama_santri_get_gallery_ids(): int[]
 irama_santri_get_business_info(): array
 irama_santri_get_page_url( string $key ): string
+irama_santri_get_product_categories(): WP_Term[]
 ```
 
 `$key` yang didukung: `menu`, `contact`.
@@ -410,6 +420,7 @@ kopisantrie/
 │   ├── PRD.md
 │   ├── ARCHITECTURE.md
 │   ├── DATABASE.md
+│   ├── DESIGN-SYSTEM.md
 │   ├── DEVELOPMENT.md
 │   └── CODING-STANDARDS.md        (menyusul)
 └── wp-content/
@@ -418,6 +429,15 @@ kopisantrie/
     │       ├── style.css
     │       ├── functions.php
     │       ├── index.php
+    │       ├── front-page.php
+    │       ├── page.php
+    │       ├── page-menu.php
+    │       ├── page-about.php
+    │       ├── page-our-space.php
+    │       ├── page-gallery.php
+    │       ├── page-contact.php
+    │       ├── single-product.php
+    │       ├── 404.php
     │       ├── header.php
     │       ├── footer.php
     │       ├── inc/
@@ -426,6 +446,9 @@ kopisantrie/
     │       │   ├── plugin-compat.php
     │       │   └── template-tags.php
     │       ├── template-parts/
+    │       │   ├── product/card.php
+    │       │   ├── facility/card.php
+    │       │   └── gallery/grid.php
     │       ├── src/
     │       │   └── css/
     │       │       └── app.css
@@ -448,18 +471,22 @@ kopisantrie/
             │   ├── options.php
             │   ├── template-functions.php
             │   └── admin/
+            │       ├── assets.php
             │       ├── product-fields.php
             │       └── settings-page.php
             └── assets/
                 ├── css/
+                │   └── admin.css
                 └── js/
+                    ├── product-fields.js
+                    └── gallery.js
 ```
 
 **Catatan:**
 
 - WordPress core tidak disimpan dalam scaffold repository ini. Saat site Pantheon dibuat, repository akan digabung dengan upstream Pantheon yang menyediakan core.
 - `wp-content/uploads/` tidak masuk Git.
-- Folder `template-parts/` dan aset gambar akan diisi pada tahap implementasi desain.
+- `template-parts/` sudah berisi kartu produk, kartu fasilitas, dan grid galeri.
 - `docs/CODING-STANDARDS.md` menyusul sebelum implementasi fitur.
 
 ---
@@ -511,6 +538,14 @@ Keputusan:
 - Label menggunakan Bahasa Indonesia.
 - Menu yang tidak dipakai (Posts, Comments) disembunyikan untuk menyederhanakan dashboard.
 - Field teknis yang tidak diperlukan pemilik tidak ditampilkan.
+
+Implementasi UI admin:
+
+- Meta box **Detail Produk** memuat harga dasar, status tersedia, status unggulan, repeater varian, dan repeater add-on.
+- Setiap baris repeater terdiri dari nama dan harga rupiah; baris kosong diabaikan saat disimpan.
+- Halaman **Irama Santri** memuat info kedai, pemetaan halaman Menu/Contact, dan pemilih galeri.
+- Galeri memakai Media Library dengan dukungan pilih banyak foto, tombol Naik/Turun, dan Hapus; urutan disimpan sebagai daftar attachment ID.
+- Aset admin hanya dimuat pada layar produk dan halaman pengaturan plugin.
 
 ---
 
@@ -713,7 +748,7 @@ Target: **WCAG 2.1 AA** untuk halaman utama.
 4. Konfigurasi domain dan DNS ke Pantheon.
 5. Integrasi GitHub–Pantheon dan mekanisme deployment aktual.
 6. Konfigurasi caching spesifik Pantheon.
-7. Font, design tokens, dan detail visual.
+7. Design system dasar sudah disetujui dan diimplementasikan; font merek berlisensi, logo final, dan foto final belum tersedia.
 8. Tagline resmi brand.
 9. Ketersediaan dan kualitas foto final.
 10. Versi PHP dan WordPress final mengikuti dukungan Pantheon.
@@ -733,4 +768,4 @@ Arsitektur dianggap disetujui apabila:
 - keputusan yang belum final tercatat dan tidak dipaksakan;
 - tidak ada fitur di luar ruang lingkup yang ditambahkan.
 
-**Status dokumen: Draft 1.1 — menunggu review.**
+**Status dokumen: Disetujui untuk implementasi (Versi 1.2).**

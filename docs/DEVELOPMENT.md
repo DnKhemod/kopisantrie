@@ -1,8 +1,8 @@
 # DEVELOPMENT GUIDE — WEBSITE KEDAI KOPI IRAMA SANTRI
 
-**Versi:** 1.0  
-**Status:** Draft — siap review  
-**Berdasarkan:** `ARCHITECTURE.md` 1.1  
+**Versi:** 1.1  
+**Status:** Aktif — mengikuti implementasi  
+**Berdasarkan:** `ARCHITECTURE.md` 1.2  
 **Terakhir diperbarui:** 3 November 2026  
 **Bahasa:** Indonesia
 
@@ -134,7 +134,39 @@ ddev wp option update page_on_front <ID_HOME>
 
 Pemetaan halaman Menu dan Contact dilakukan melalui **Irama Santri → Info Kedai** di dashboard.
 
-### 4.7 Build CSS
+### 4.7 Tetapkan Template Halaman
+
+Setelah halaman dibuat, tetapkan template melalui **Pages → Edit → Page Attributes → Template**:
+
+| Halaman | Template |
+|---|---|
+| Home | `Default template` (memakai `front-page.php`) |
+| About | `Tentang Kedai` (`page-about.php`) |
+| Menu | `Menu Katalog` (`page-menu.php`) |
+| Our Space | `Our Space` (`page-our-space.php`) |
+| Gallery | `Galeri` (`page-gallery.php`) |
+| Contact | `Contact & Location` (`page-contact.php`) |
+
+Buat menu navigasi di **Appearance → Menus** untuk lokasi **Navigasi Utama** dan **Navigasi Footer**. Bila menu belum dibuat, Theme memakai daftar halaman sebagai fallback.
+
+Isi konten halaman Home melalui editor; konten tersebut tampil pada section "Tentang Kami" di homepage.
+
+### 4.8 Mengelola Konten Terstruktur
+
+| Kebutuhan | Lokasi |
+|---|---|
+| Produk, kategori, harga, varian, add-on | **Products** |
+| Fasilitas | **Facilities** |
+| Info kedai, pemetaan halaman, galeri | **Irama Santri** |
+
+Catatan admin:
+
+- Harga disimpan sebagai integer rupiah tanpa titik atau koma.
+- Harga dasar boleh `0` bila seluruh harga ditentukan oleh varian.
+- Baris varian/add-on tanpa nama akan diabaikan saat disimpan.
+- Galeri disusun dengan tombol Naik/Turun; urutan tersimpan otomatis pada hidden input saat disimpan.
+
+### 4.9 Build CSS
 
 ```bash
 npm ci
@@ -220,8 +252,9 @@ Aturan:
 - Output build di-commit.
 - Jangan mengedit `assets/css/app.css` secara manual.
 - Jangan menggunakan Tailwind Play CDN.
-- Token warna dan font masih sementara sampai design system disetujui.
+- Token warna dan font mengikuti `docs/DESIGN-SYSTEM.md` yang sudah disetujui.
 - Jika menambah file PHP baru di Theme, pastikan path `@source` mencakupnya.
+- Setelah mengubah class Tailwind atau template, jalankan `npm run build` dan commit hasilnya.
 
 ---
 
@@ -393,6 +426,6 @@ Prosedur spesifik mengikuti kemampuan Pantheon dan ditetapkan sebelum produksi.
 4. Strategi caching.
 5. Backup eksternal dan retensi.
 6. Alat linting dan CI.
-7. Design tokens final.
+7. Design tokens sudah dibekukan untuk implementasi; font merek berlisensi, logo, dan foto final belum tersedia.
 
-**Status dokumen: Draft 1.0 — menunggu review.**
+**Status dokumen: Aktif (Versi 1.1).**

@@ -216,3 +216,47 @@ function irama_santri_get_facilities( array $args = array() ): WP_Query {
 
 	return new WP_Query( wp_parse_args( $args, $defaults ) );
 }
+
+/**
+ * Mengambil kategori produk dalam urutan tampilan yang disepakati.
+ *
+ * Urutan tetap: Coffee, Non-Coffee, Snacks, Dessert / Pastry.
+ * Kategori tambahan diletakkan setelahnya dan diurutkan berdasarkan nama.
+ *
+ * @return WP_Term[]
+ */
+function irama_santri_get_product_categories(): array {
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'product_category',
+			'hide_empty' => false,
+		)
+	);
+
+	if ( is_wp_error( $terms ) || empty( $terms ) ) {
+		return array();
+	}
+
+	$order = array(
+		'coffee'         => 1,
+		'non-coffee'     => 2,
+		'snacks'         => 3,
+		'dessert-pastry' => 4,
+	);
+
+	usort(
+		$terms,
+		static function ( WP_Term $a, WP_Term $b ) use ( $order ): int {
+			$order_a = $order[ $a->slug ] ?? 99;
+			$order_b = $order[ $b->slug ] ?? 99;
+
+			if ( $order_a === $order_b ) {
+				return strcasecmp( $a->name, $b->name );
+			}
+
+			return $order_a <=> $order_b;
+		}
+	);
+
+	return $terms;
+}

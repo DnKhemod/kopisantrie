@@ -1,15 +1,27 @@
 @import "tailwindcss";
 
-/*
- * Token sementara.
- * Nilai final menunggu persetujuan design system.
- */
 @theme {
-  --color-cream-50: #faf7f1;
-  --color-cream-100: #f1e7d7;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+
+  --color-cream-50: #fbf8f2;
+  --color-cream-100: #f4ecdd;
+  --color-cream-200: #e8d9c2;
+
+  --color-coffee-500: #8a5a3b;
   --color-coffee-700: #5a3a28;
   --color-coffee-900: #2e1c13;
-  --color-accent-600: #b07d4f;
+
+  --color-accent-500: #c08a5a;
+  --color-accent-600: #a86f42;
+  --color-accent-700: #86562f;
+
+  --color-sage-100: #e4ebdd;
+  --color-sage-700: #3f5a38;
+
+  --shadow-soft: 0 18px 40px -24px rgb(46 28 19 / 0.35);
+  --radius-card: 1.25rem;
 }
 
 @source "../../**/*.php";
@@ -26,10 +38,109 @@
   }
 
   body {
-    @apply bg-cream-50 text-coffee-900 antialiased;
+    @apply bg-cream-50 font-sans text-coffee-900 antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent-500/30 text-coffee-900;
   }
 
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-accent-600;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-coffee-700 text-cream-50 hover:bg-coffee-900;
+  }
+
+  .btn-secondary {
+    @apply border border-coffee-700/25 bg-transparent text-coffee-900 hover:bg-cream-100;
+  }
+
+  .btn-light {
+    @apply bg-cream-50 text-coffee-900 hover:bg-cream-100;
+  }
+
+  .card {
+    @apply overflow-hidden rounded-card border border-cream-200 bg-white shadow-soft;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .badge-featured {
+    @apply bg-accent-600 text-white;
+  }
+
+  .badge-muted {
+    @apply bg-coffee-900/10 text-coffee-700;
+  }
+
+  .badge-available {
+    @apply bg-sage-100 text-sage-700;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-accent-700;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-semibold tracking-tight text-coffee-900 sm:text-4xl;
+  }
+
+  .section-lead {
+    @apply mt-4 max-w-2xl text-base leading-7 text-coffee-700;
+  }
+
+  .site-nav a {
+    @apply text-sm font-medium text-coffee-700 transition-colors hover:text-accent-700;
+  }
+
+  .site-nav .current-menu-item > a,
+  .site-nav .current_page_item > a {
+    @apply text-coffee-900 underline decoration-accent-600 decoration-2 underline-offset-8;
+  }
+
+  .prose-is > * + * {
+    @apply mt-4;
+  }
+
+  .prose-is p {
+    @apply text-base leading-7 text-coffee-700;
+  }
+
+  .prose-is h2 {
+    @apply mt-8 font-display text-2xl font-semibold text-coffee-900;
+  }
+
+  .prose-is h3 {
+    @apply mt-6 font-display text-xl font-semibold text-coffee-900;
+  }
+
+  .prose-is ul {
+    @apply list-disc space-y-2 pl-6 text-coffee-700;
+  }
+
+  .prose-is ol {
+    @apply list-decimal space-y-2 pl-6 text-coffee-700;
+  }
+
+  .prose-is a {
+    @apply font-medium text-accent-700 underline underline-offset-4 hover:text-coffee-900;
+  }
+
+  .prose-is blockquote {
+    @apply border-l-4 border-accent-500 pl-4 italic text-coffee-700;
   }
 }

@@ -2,8 +2,6 @@
 /**
  * Header.
  *
- * Struktur dasar; styling final menunggu design system.
- *
  * @package IramaSantriTheme
  */
 
@@ -21,13 +19,13 @@ defined( 'ABSPATH' ) || exit;
 <a class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-coffee-900" href="#primary">
 	<?php esc_html_e( 'Lewati ke konten', 'irama-santri' ); ?>
 </a>
-<header class="border-b border-cream-100">
-	<div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+<header class="sticky top-0 z-40 border-b border-cream-200/80 bg-cream-50/95 backdrop-blur">
+	<div class="container-page flex flex-wrap items-center justify-between gap-4 py-4">
 		<div class="site-branding">
 			<?php if ( has_custom_logo() ) : ?>
 				<?php the_custom_logo(); ?>
 			<?php else : ?>
-				<a class="text-lg font-semibold" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+				<a class="font-display text-xl font-semibold tracking-tight" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 					<?php bloginfo( 'name' ); ?>
 				</a>
 			<?php endif; ?>
@@ -35,7 +33,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<button
 			type="button"
-			class="rounded border border-cream-100 px-3 py-2 text-sm md:hidden"
+			class="btn btn-secondary px-4 py-2 md:hidden"
 			data-nav-toggle
 			aria-expanded="false"
 			aria-controls="primary-menu"
@@ -45,7 +43,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<nav
 			id="primary-menu"
-			class="hidden w-full md:block md:w-auto"
+			class="site-nav order-last hidden basis-full md:order-none md:block md:basis-auto"
 			data-nav-menu
 			aria-label="<?php esc_attr_e( 'Navigasi utama', 'irama-santri' ); ?>"
 		>
@@ -54,12 +52,16 @@ defined( 'ABSPATH' ) || exit;
 				array(
 					'theme_location' => 'primary',
 					'container'      => false,
-					'menu_class'     => 'flex flex-col gap-3 text-sm md:flex-row md:items-center md:gap-5',
-					'fallback_cb'    => false,
+					'menu_class'     => 'flex flex-col gap-3 md:flex-row md:items-center md:gap-6',
+					'fallback_cb'    => 'irama_santri_theme_nav_fallback',
 					'depth'          => 2,
 				)
 			);
 			?>
 		</nav>
+
+		<a class="btn btn-primary hidden lg:inline-flex" href="<?php echo esc_url( irama_santri_theme_page_url( 'contact' ) ); ?>">
+			<?php esc_html_e( 'Kunjungi Kedai', 'irama-santri' ); ?>
+		</a>
 	</div>
 </header>

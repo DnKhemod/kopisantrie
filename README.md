@@ -11,7 +11,7 @@ Website profil bisnis dan katalog produk Kedai Kopi Irama Santri.
 
 ## Status
 
-Tahap **arsitektur dan fondasi**. Dokumen arsitektur sudah diperbaiki, struktur repository sudah dibangun, dan data layer dasar sudah tersedia. Desain visual dan template halaman final menunggu persetujuan design system.
+Tahap **implementasi frontend dan admin**. Design system, seluruh template halaman, dan UI admin untuk varian/add-on/galeri sudah dibuat. Repository belum diuji pada runtime WordPress karena lingkungan DDEV belum tersedia; pengujian lokal dan integrasi Pantheon menjadi langkah berikutnya.
 
 ## Dokumentasi
 
@@ -21,6 +21,7 @@ Tahap **arsitektur dan fondasi**. Dokumen arsitektur sudah diperbaiki, struktur 
 | [`docs/PRD.md`](docs/PRD.md) | Kebutuhan produk dan kriteria penerimaan |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Arsitektur teknis, kontrak Theme–Plugin, deployment |
 | [`docs/DATABASE.md`](docs/DATABASE.md) | Struktur data produk, fasilitas, galeri, info kedai |
+| [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md) | Token warna, tipografi, komponen, aksesibilitas |
 | [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) | Setup lokal, build, Git, deployment, QA |
 | [`AGENTS.md`](AGENTS.md) | Aturan kerja untuk kontributor dan AI agent |
 
