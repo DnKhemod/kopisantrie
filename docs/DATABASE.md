@@ -450,9 +450,15 @@ $args = array(
             'value' => '1',
         ),
         array(
-            'key'     => '_is_available',
-            'value'   => '1',
-            'compare' => '!=',
+            'relation' => 'OR',
+            array(
+                'key'   => '_is_available',
+                'value' => '1',
+            ),
+            array(
+                'key'     => '_is_available',
+                'compare' => 'NOT EXISTS',
+            ),
         ),
     ),
 );

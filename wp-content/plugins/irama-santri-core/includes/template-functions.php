@@ -50,8 +50,15 @@ function irama_santri_get_featured_products( int $limit = 4 ): WP_Query {
 					'value' => '1',
 				),
 				array(
-					'key'   => '_is_available',
-					'value' => '1',
+					'relation' => 'OR',
+					array(
+						'key'   => '_is_available',
+						'value' => '1',
+					),
+					array(
+						'key'     => '_is_available',
+						'compare' => 'NOT EXISTS',
+					),
 				),
 			),
 		)
